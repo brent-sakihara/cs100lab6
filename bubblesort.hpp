@@ -1,11 +1,10 @@
 #ifndef __BUBBLESORT_HPP__
 #define __BUBBLESORT_HPP__
 #include "sort.hpp"
-#include "container.hpp"
-
+class container;
 class BubbleSort : public Sort {
 public:
-	BubbleSort() {};
+	BubbleSort(): Sort() {};
 	void sort(Container* container);
 };
 
