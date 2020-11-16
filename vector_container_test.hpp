@@ -268,7 +268,6 @@ TEST(SortTestSet, SelectionSortTestOnVectorContainerFiveTrees) {
     EXPECT_EQ(container->at(4)->evaluate(), 28);
 }
 
-/*
 TEST(SortTestSet, SelectionSortTestOnListContainerFourTrees) {
 
     Op* two = new Op(2);
@@ -308,9 +307,7 @@ TEST(SortTestSet, SelectionSortTestOnListContainerFourTrees) {
     EXPECT_EQ(container->at(2)->evaluate(), 24);
     EXPECT_EQ(container->at(3)->evaluate(), 216);
 }
-*/
 
-/*
 TEST(SortTestSet, SelectionSortTestOnListContainerSixTrees) {
 
     Op* two = new Op(2);
@@ -364,5 +361,5 @@ TEST(SortTestSet, SelectionSortTestOnListContainerSixTrees) {
     EXPECT_EQ(container->at(4)->evaluate(), 24);
     EXPECT_EQ(container->at(5)->evaluate(), 216);
 }
-*/
+
 #endif
