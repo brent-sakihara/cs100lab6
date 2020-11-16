@@ -308,6 +308,41 @@ TEST(ListContainerTest, sortTreeRand) {
 	test->sort();
 	EXPECT_EQ(test->at(1), hundred);
 }
+/*
+TEST(ListContainerTest, sortTreesTwo) {
+        VectorContainer* test = new VectorContainer();
+        Sort * sorter = new BubbleSort();
+        Op* one = new Op(1);
+        Op* three = new Op(3);
+        Mult* m = new Mult(one, three);
+        Op* eight = new Op(8);
+        Op* two = new Op(2);
+        Div* d = new Div(eight, two);
+        test->add_element(m);
+        test->add_element(one);
+        EXPECT_EQ(test->at(0), m);
+        EXPECT_EQ(test->at(1), one);
+        test->set_sort_function(sorter);
+        test->add_element(d);
+        test->sort();
+        EXPECT_EQ(test->at(0), one);
+        EXPECT_EQ(test->at(1), m);
+        EXPECT_EQ(test->at(2), d);
+}
 
+TEST(ListContainerTest, sortTreeRandTwo) {
+        VectorContainer* test = new VectorContainer();
+        Sort* sorter = new BubbleSort();
+        test->set_sort_function(sorter);
+        Rand* r = new Rand();
+        test->add_element(r);
+        EXPECT_EQ(test->at(0), r);
+        Op* hundred = new Op(100);
+        test->add_element(hundred);
+        test->sort();
+        EXPECT_EQ(test->at(1), hundred);
+}
+
+*/
 
 #endif
