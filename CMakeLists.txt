@@ -16,6 +16,9 @@ ADD_EXECUTABLE(test
 	sub.cpp
 	listcontainer.cpp
 	bubblesort.cpp
+	vector_container.cpp
+	selection_sort.cpp
+	
 )
 
 TARGET_LINK_LIBRARIES(test  gtest)
