@@ -308,8 +308,9 @@ TEST(ListContainerTest, sortTreeRand) {
 	test->sort();
 	EXPECT_EQ(test->at(1), hundred);
 }
-/*
-TEST(ListContainerTest, sortTreesTwo) {
+
+
+TEST(ListContainerTest, sortTreesTwoForVectorContainer) {
         vectorContainer* test = new vectorContainer();
         Sort * sorter = new BubbleSort();
         Op* one = new Op(1);
@@ -330,7 +331,7 @@ TEST(ListContainerTest, sortTreesTwo) {
         EXPECT_EQ(test->at(2), d);
 }
 
-TEST(ListContainerTest, sortTreeRandTwo) {
+TEST(ListContainerTest, sortTreeRandTwoForVectorContainer) {
         vectorContainer* test = new vectorContainer();
         Sort* sorter = new BubbleSort();
         test->set_sort_function(sorter);
@@ -343,6 +344,6 @@ TEST(ListContainerTest, sortTreeRandTwo) {
         EXPECT_EQ(test->at(1), hundred);
 }
 
-*/
+
 
 #endif
