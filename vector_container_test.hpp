@@ -190,6 +190,179 @@ TEST(vectorContainerTestSet, sizeZero) {
    EXPECT_EQ(test_container->size(), 0);
 };
 
+TEST(SortTestSet, SelectionSortTestOnVectorContainerThreeTrees) {
+    Op* seven = new Op(7);
+    Op* four = new Op(4);
+    Mult* TreeA = new Mult(seven, four);
 
+    Op* three = new Op(3);
+    Op* two = new Op(2);
+    Add* TreeB = new Add(three, two);
 
+    Op* ten = new Op(10);
+    Op* six = new Op(6);
+    Sub* TreeC = new Sub(ten, six);
+
+    vectorContainer* container = new vectorContainer();
+    container->add_element(TreeA);
+    container->add_element(TreeB);
+    container->add_element(TreeC);
+
+    ASSERT_EQ(container->size(), 3);
+    EXPECT_EQ(container->at(0)->evaluate(), 28);
+    EXPECT_EQ(container->at(1)->evaluate(), 5);
+    EXPECT_EQ(container->at(2)->evaluate(), 4);
+
+    container->set_sort_function(new selectionSort());
+    container->sort();
+
+    ASSERT_EQ(container->size(), 3);
+    EXPECT_EQ(container->at(0)->evaluate(), 4);
+    EXPECT_EQ(container->at(1)->evaluate(), 5);
+    EXPECT_EQ(container->at(2)->evaluate(), 28);
+}
+
+TEST(SortTestSet, SelectionSortTestOnVectorContainerFiveTrees) {
+    Op* seven = new Op(7);
+    Op* four = new Op(4);
+    Mult* TreeA = new Mult(seven, four);
+
+    Op* three = new Op(3);
+    Op* two = new Op(2);
+    Add* TreeB = new Add(three, two);
+
+    Op* ten = new Op(10);
+    Op* six = new Op(6);
+    Sub* TreeC = new Sub(ten, six);
+
+    Op* fifty = new Op(50);
+    Op* five = new Op(5);
+    Div* TreeD = new Div(fifty, five);
+
+    Op* eight = new Op(8);
+    Op* negTwo = new Op(-2);
+    Pow* TreeE = new Pow(eight, negTwo);
+
+    vectorContainer* container = new vectorContainer();
+    container->add_element(TreeA);
+    container->add_element(TreeB);
+    container->add_element(TreeC);
+    container->add_element(TreeD);
+    container->add_element(TreeE);
+
+    ASSERT_EQ(container->size(), 5);
+    EXPECT_EQ(container->at(0)->evaluate(), 28);
+    EXPECT_EQ(container->at(1)->evaluate(), 5);
+    EXPECT_EQ(container->at(2)->evaluate(), 4);
+    EXPECT_EQ(container->at(3)->evaluate(), 10);
+    EXPECT_EQ(container->at(4)->evaluate(), 0.015625);
+
+    container->set_sort_function(new selectionSort());
+    container->sort();
+
+    ASSERT_EQ(container->size(), 5);
+    EXPECT_EQ(container->at(0)->evaluate(), 0.015625);
+    EXPECT_EQ(container->at(1)->evaluate(), 4);
+    EXPECT_EQ(container->at(2)->evaluate(), 5);
+    EXPECT_EQ(container->at(3)->evaluate(), 10);
+    EXPECT_EQ(container->at(4)->evaluate(), 28);
+}
+
+/*
+TEST(SortTestSet, SelectionSortTestOnListContainerFourTrees) {
+
+    Op* two = new Op(2);
+    Op* twelve = new Op(12);
+    Mult* TreeA = new Mult(two, twelve);
+
+    Op* five = new Op(5);
+    Op* eleven = new Op(11);
+    Sub* TreeB = new Sub(five, eleven);
+
+    Op* six = new Op(6);
+    Op* three = new Op(3);
+    Pow* TreeC = new Pow(six, three);
+
+    Op* ten = new Op(10);
+    Op* one = new Op(1);
+    Div* TreeD = new Div(ten, one);
+
+    ListContainer* container = new ListContainer();
+    container->add_element(TreeA);
+    container->add_element(TreeB);
+    container->add_element(TreeC);
+    container->add_element(TreeD);
+
+    ASSERT_EQ(container->size(), 4);
+    EXPECT_EQ(container->at(0)->evaluate(), 24);
+    EXPECT_EQ(container->at(1)->evaluate(), -6);
+    EXPECT_EQ(container->at(2)->evaluate(), 216);
+    EXPECT_EQ(container->at(3)->evaluate(), 10);
+
+    container->set_sort_function(new selectionSort());
+    container->sort();
+
+    ASSERT_EQ(container->size(), 4);
+    EXPECT_EQ(container->at(0)->evaluate(), -6);
+    EXPECT_EQ(container->at(1)->evaluate(), 10);
+    EXPECT_EQ(container->at(2)->evaluate(), 24);
+    EXPECT_EQ(container->at(3)->evaluate(), 216);
+}
+*/
+
+/*
+TEST(SortTestSet, SelectionSortTestOnListContainerSixTrees) {
+
+    Op* two = new Op(2);
+    Op* twelve = new Op(12);
+    Mult* TreeA = new Mult(two, twelve);
+
+    Op* five = new Op(5);
+    Op* eleven = new Op(11);
+    Sub* TreeB = new Sub(five, eleven);
+
+    Op* six = new Op(6);
+    Op* three = new Op(3);
+    Pow* TreeC = new Pow(six, three);
+
+    Op* ten = new Op(10);
+    Op* one = new Op(1);
+    Div* TreeD = new Div(ten, one);
+
+    Op* negOne = new Op(-1);
+    Op* negThree = new Op(-3);
+    Add* TreeE = new Add(negOne, negThree);
+
+    Op* four = new Op(4);
+    Op* twenty = new Op(20);
+    Div* TreeF = new Div(four, twenty);
+
+    ListContainer* container = new ListContainer();
+    container->add_element(TreeA);
+    container->add_element(TreeB);
+    container->add_element(TreeC);
+    container->add_element(TreeD);
+    container->add_element(TreeE);
+    container->add_element(TreeF);
+
+    ASSERT_EQ(container->size(), 6);
+    EXPECT_EQ(container->at(0)->evaluate(), 24);
+    EXPECT_EQ(container->at(1)->evaluate(), -6);
+    EXPECT_EQ(container->at(2)->evaluate(), 216);
+    EXPECT_EQ(container->at(3)->evaluate(), 10);
+    EXPECT_EQ(container->at(4)->evaluate(), -4);
+    EXPECT_EQ(container->at(5)->evaluate(), 0.2);
+
+    container->set_sort_function(new selectionSort());
+    container->sort();
+
+    ASSERT_EQ(container->size(), 6);
+    EXPECT_EQ(container->at(0)->evaluate(), -6);
+    EXPECT_EQ(container->at(1)->evaluate(), -4);
+    EXPECT_EQ(container->at(2)->evaluate(), 0.2);
+    EXPECT_EQ(container->at(3)->evaluate(), 10);
+    EXPECT_EQ(container->at(4)->evaluate(), 24);
+    EXPECT_EQ(container->at(5)->evaluate(), 216);
+}
+*/
 #endif
