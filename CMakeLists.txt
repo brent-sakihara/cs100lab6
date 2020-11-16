@@ -21,5 +21,20 @@ ADD_EXECUTABLE(test
 	
 )
 
+ADD_EXECUTABLE(lab
+	op.cpp
+        rand.cpp
+        pow.cpp
+        mult.cpp
+        div.cpp
+        add.cpp
+        sub.cpp
+        listcontainer.cpp
+        bubblesort.cpp
+        vector_container.cpp
+        selection_sort.cpp
+	main.cpp
+)
+
 TARGET_LINK_LIBRARIES(test  gtest)
 TARGET_COMPILE_DEFINITIONS(test PRIVATE gtest_disable_pthreads=ON)

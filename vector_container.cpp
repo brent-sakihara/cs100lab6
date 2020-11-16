@@ -6,11 +6,11 @@
 #include "sort.hpp"
 
 using namespace std;
-
+/*
 void Container::set_sort_function(Sort* sort_function){
 	this->sort_function = sort_function;
 };
-
+*/
 Sort* vectorContainer::getSortFunction(){
 	return sort_function;
 }; 
@@ -21,9 +21,10 @@ void vectorContainer::add_element(Base* element){
 
 void vectorContainer::print(){
 	for (int i = 0; i < c.size(); ++i){
-		cout << c.at(i)->stringify() << endl;
+		cout << c.at(i)->stringify();
 		totalExpression += c.at(i)->stringify();
 	}
+	cout << endl;
 };
 
 void vectorContainer::sort(){
@@ -31,7 +32,7 @@ void vectorContainer::sort(){
 		throw runtime_error("Sort function is null");
 	}
 	else{
-		cout << "calls on previously set sorting algorithm";
+//		cout << "calls on previously set sorting algorithm";
 		sort_function->sort(this);
 	}
 };	

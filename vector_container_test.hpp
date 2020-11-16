@@ -10,6 +10,7 @@
 #include "arithmetic_operations.hpp"
 #include "sort.hpp"
 #include "selection_sort.hpp"
+#include "listcontainer.hpp"
 
 TEST(vectorContainerTestSet, constructorTestNoParameters) {
     vectorContainer* test_container = new vectorContainer();

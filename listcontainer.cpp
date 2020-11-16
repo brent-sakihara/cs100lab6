@@ -1,10 +1,6 @@
 #include "listcontainer.hpp"
 #include <list>
 #include <iostream>
-/* Non Virtual Functions */
-void Container::set_sort_function(Sort* sort_function) {
-	this->sort_function = sort_function;
-}
 
 /* Pure Virtual Functions */
 // push the top pointer of the tree into container
@@ -17,6 +13,7 @@ void ListContainer::print() {
 	for (std::list<Base*>::iterator it = listc.begin(); it!= listc.end(); ++it){
 		std::cout << (*it)->stringify();
 	}
+	std::cout << std::endl;
 }
 
 // calls on the previously set sorting-algorithm. Checks if sort_function is not
