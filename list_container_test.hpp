@@ -310,7 +310,7 @@ TEST(ListContainerTest, sortTreeRand) {
 }
 /*
 TEST(ListContainerTest, sortTreesTwo) {
-        VectorContainer* test = new VectorContainer();
+        vectorContainer* test = new vectorContainer();
         Sort * sorter = new BubbleSort();
         Op* one = new Op(1);
         Op* three = new Op(3);
@@ -331,7 +331,7 @@ TEST(ListContainerTest, sortTreesTwo) {
 }
 
 TEST(ListContainerTest, sortTreeRandTwo) {
-        VectorContainer* test = new VectorContainer();
+        vectorContainer* test = new vectorContainer();
         Sort* sorter = new BubbleSort();
         test->set_sort_function(sorter);
         Rand* r = new Rand();
