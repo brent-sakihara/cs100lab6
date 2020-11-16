@@ -159,4 +159,155 @@ TEST(ListContainerTest, zerosize) {
     EXPECT_EQ(test->size(), 1);
 }
 
+TEST(ListContainerTest, sortruntime) {
+    ListContainer* test = new ListContainer();
+    EXPECT_EQ(test->size(), 0);
+    Op* one = new Op(1);
+    test->add_element(one);
+    EXPECT_EQ(test->size(), 1);
+    EXPECT_EQ(test->at(0)->stringify(), "1.000000");
+    EXPECT_THROW(test->sort(), std::runtime_error);
+}
+
+TEST(ListContainerTest, sortOne) {
+	ListContainer* test = new ListContainer();
+	Sort * sorter = new BubbleSort();
+	Op* one = new Op(1);
+	test->add_element(one);
+	test->set_sort_function(sorter);
+	test->sort();
+	EXPECT_EQ(test->at(0), one);
+}
+
+TEST(ListContainerTest, sortTwo) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+        Op* one = new Op(1);
+	Op* two = new Op(2);
+        test->add_element(one);
+        test->set_sort_function(sorter);
+        test->sort();
+	test->add_element(two);
+        EXPECT_EQ(test->at(0), one);
+	EXPECT_EQ(test->at(1), two);
+}
+
+TEST(ListContainerTest, sortThree) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+        Op* one = new Op(1);
+        Op* two = new Op(2);
+	Op* three = new Op(3);
+        test->add_element(three);
+	test->add_element(one);
+        test->set_sort_function(sorter);
+        test->sort();
+	EXPECT_EQ(test->at(0), one);
+	EXPECT_EQ(test->at(1), three);
+        test->add_element(two);
+	test->sort();
+        EXPECT_EQ(test->at(0), one);
+        EXPECT_EQ(test->at(2), three);
+}
+
+TEST(ListContainerTest, sortTree) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+        Op* one = new Op(1);
+        Op* two = new Op(2);
+	Mult* m = new Mult(one, two);
+	Op* onetoo = new Op(1);
+        Op* three = new Op(3);
+        test->add_element(three);
+        test->add_element(onetoo);
+	test->add_element(m);
+	EXPECT_EQ(test->at(2), m);
+        test->set_sort_function(sorter);
+        test->sort();
+        EXPECT_EQ(test->at(0), onetoo);
+        EXPECT_EQ(test->at(1), m);
+        EXPECT_EQ(test->at(2), three);
+}
+
+TEST(ListContainerTest, sortTrees) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+        Op* one = new Op(1);
+        Op* three = new Op(3);
+        Mult* m = new Mult(one, three);
+        Op* eight = new Op(8);
+        Op* two = new Op(2);
+	Div* d = new Div(eight, two);
+        test->add_element(m);
+	test->add_element(one);
+	EXPECT_EQ(test->at(0), m);
+        EXPECT_EQ(test->at(1), one);
+        test->set_sort_function(sorter);
+	test->add_element(d);
+        test->sort();
+        EXPECT_EQ(test->at(0), one);
+        EXPECT_EQ(test->at(1), m);
+        EXPECT_EQ(test->at(2), d);
+}
+
+TEST(ListContainerTest, sortTreesTwo) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+	test->set_sort_function(sorter);
+        Op* five = new Op(5);
+        Op* three = new Op(3);
+        Mult* m = new Mult(five, three);
+        Op* eight = new Op(8);
+	Sub* s = new Sub(m,eight);
+        Op* two = new Op(2);
+        Div* d = new Div(eight, two);
+        test->add_element(m);
+        test->add_element(s);
+        EXPECT_EQ(test->at(0), m);
+        EXPECT_EQ(test->at(1), s);
+        test->sort();
+        EXPECT_EQ(test->at(0), s);
+        EXPECT_EQ(test->at(1), m);
+	test->add_element(d);
+        EXPECT_EQ(test->at(2), d);
+	test->sort();
+	EXPECT_EQ(test->at(0), d);
+}
+
+TEST(ListContainerTest, sortTreesThree) {
+        ListContainer* test = new ListContainer();
+        Sort * sorter = new BubbleSort();
+        test->set_sort_function(sorter);
+        Op* one = new Op(1);
+        Op* six = new Op(6);
+        Add* a = new Add(one, six);
+        Op* nine = new Op(9);
+        Op* two = new Op(2);
+        Div* d = new Div(two, one);
+        test->add_element(a);
+        test->add_element(d);
+        EXPECT_EQ(test->at(0), a);
+        EXPECT_EQ(test->at(1), d);
+	Pow* p = new Pow(a, d);
+	test->add_element(p);
+        test->sort();
+        EXPECT_EQ(test->at(0), d);
+        EXPECT_EQ(test->at(1), a);
+        EXPECT_EQ(test->at(2), p);
+}
+
+TEST(ListContainerTest, sortTreeRand) {
+	ListContainer* test = new ListContainer();
+	Sort* sorter = new BubbleSort();
+	test->set_sort_function(sorter);
+	Rand* r = new Rand();
+	test->add_element(r);
+	EXPECT_EQ(test->at(0), r);
+	Op* hundred = new Op(100);
+	test->add_element(hundred);
+	test->sort();
+	EXPECT_EQ(test->at(1), hundred);
+}
+
+
 #endif
